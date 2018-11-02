@@ -12,6 +12,8 @@ std::string Name::get()
     Random r(0, 3);
     int ran = r.get();
 
+    std::cout << "Got #" << ran << std::endl;
+
     std::string chosenName = names[ran];
     return chosenName;
 }

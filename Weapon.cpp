@@ -1,7 +1,7 @@
 #include "Weapon.h"
 #include "Random.h"
 
-Weapon::Weapon(string t, int p, int s)
+Weapon::Weapon(std::string t, int p, int s)
     : type(t), probability(p), stamina(s)
 {
 
@@ -29,5 +29,5 @@ bool Weapon::did_I_hit()
 
 void Weapon::display()
 {
-    cout << type << " that costs " << stamina << " stamina and has a " << probability << "% chance to hit." << endl;
+    std::cout << type << " that costs " << stamina << " stamina and has a " << probability << "% chance to hit." << std::endl;
 }
