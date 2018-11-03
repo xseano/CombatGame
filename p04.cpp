@@ -1,5 +1,6 @@
 #include "Project.h"
 #include "Name.h"
+#include "Player.h"
 
 int main()
 {
@@ -9,7 +10,9 @@ int main()
     Name nameGen(names);
     std::string name = nameGen.get();
 
-    std::cout << "Welcome, " << name << "." << std::endl;
+    Player player(name);
+
+    std::cout << "Welcome, " << player.name << "." << std::endl;
 }
 
 void registerNames(std::vector<std::string>* names)
