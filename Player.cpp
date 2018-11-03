@@ -1,10 +1,9 @@
 #include "Player.h"
 
-Player::Player(std::string name)
-    : name(name)
+Player::Player(std::string name, int health, int stamina)
+    : name(name), health(health), stamina(stamina)
 {
-    int health = 100;
-    int stamina = 200;
+
 }
 
 void Player::addHealth(int amount)
