@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 
+#include "Random.h"
+
 class Name
 {
     public:

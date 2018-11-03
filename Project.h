@@ -1,5 +1,6 @@
 #ifndef PROJECT_H
 #define PROJECT_H
+
 #define NAME_LEN 4
 #define WEAPON_LEN 4
 
