@@ -69,8 +69,8 @@ void playGame(Knight* knight)
     Player player = knight->getPlayer();
     Weapon weapon = knight->getWeapon();
 
-    std::cout << player.getName() << std::endl;
-    std::cout << weapon.getType() << std::endl;
+    std::cout << "player: " << player.getName() << std::endl;
+    std::cout << "weapon: " << weapon.getType() << std::endl;
 }
 
 void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probability, int stamina)
