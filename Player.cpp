@@ -6,6 +6,11 @@ Player::Player(std::string name, int health, int stamina)
 
 }
 
+std::string Player::getName()
+{
+    return name;
+}
+
 void Player::addHealth(int amount)
 {
     health += amount;

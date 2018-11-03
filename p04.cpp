@@ -49,6 +49,28 @@ int main()
 
     // Get weapon stamina value and add it to existenital player base stamina
     player.addStamina(chosenWeapon.getStamina());
+
+    while(true)
+    {
+        if ((player.getHealth() <= 0) || (player.getStamina() <= 0))
+        {
+            break;
+            return 0;
+        }
+        else
+        {
+            playGame(&knight);
+        }
+    }
+}
+
+void playGame(Knight* knight)
+{
+    Player player = knight->getPlayer();
+    Weapon weapon = knight->getWeapon();
+
+    std::cout << player.getName() << std::endl;
+    std::cout << weapon.getType() << std::endl;
 }
 
 void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probability, int stamina)

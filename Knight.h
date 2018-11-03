@@ -9,7 +9,9 @@
 class Knight
 {
     public:
-        Knight(Player plyr, Weapon wpn);
+        Knight(Player player, Weapon weapon);
+        Player getPlayer();
+        Weapon getWeapon();
         void display();
     private:
         Player player;

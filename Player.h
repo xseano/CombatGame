@@ -12,6 +12,7 @@ class Player
         int health;
         int stamina;
 
+        std::string getName();
         int getHealth();
         int getStamina();
         void addHealth(int amount);

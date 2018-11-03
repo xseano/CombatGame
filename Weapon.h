@@ -7,6 +7,7 @@ class Weapon
 {
     public:
         Weapon(std::string t, int p, int s);
+        std::string getType();
         void display();
         int getStamina();
         bool did_I_hit();

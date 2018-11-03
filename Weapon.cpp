@@ -7,6 +7,11 @@ Weapon::Weapon(std::string t, int p, int s)
 
 }
 
+std::string Weapon::getType()
+{
+    return type;
+}
+
 int Weapon::getStamina()
 {
     return stamina;
