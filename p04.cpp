@@ -34,8 +34,10 @@ int main()
     }
 
     std::cin >> weaponChoice;
+    Weapon chosenWeapon = weapons[weaponChoice];
 
-    std::cout << "You chose the weapon: " << weaponList[weaponChoice] << std::endl;
+    Knight knight(player, chosenWeapon);
+    knight.display();
 }
 
 void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probability, int stamina)
