@@ -17,7 +17,7 @@ int main()
 
     for (int i = 0; i < WEAPON_LEN; i++)
     {
-        registerWeapon(&weapons, weaponList[i], 100, 50);
+        registerWeapon(&weapons, weaponList[i], getRandomAmount(100), getRandomAmount(150));
     }
 
     Name nameGen(names);
@@ -50,4 +50,9 @@ void registerName(std::vector<std::string>* names, std::string name)
 {
     std::string fullName = "Sir " + name;
     names->push_back(fullName);
+}
+
+int getRandomAmount(int max)
+{
+    return (rand() % max + 1);
 }
