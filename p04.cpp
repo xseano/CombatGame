@@ -5,12 +5,17 @@ int main()
     int weaponChoice;
 
     std::vector<std::string> names;
-    registerNames(&names);
+    std::string nameList[NAME_LEN] = {"Lancelot", "Kaladin", "Geralt", "Jamie"};
+
+    for (int i = 0; i < NAME_LEN; i++)
+    {
+        registerName(&names, nameList[i]);
+    }
 
     std::vector<Weapon> weapons;
-    std::string weaponList[WEAPON_LIST] = {"greatsword", "lance", "rapier", "spear"};
+    std::string weaponList[WEAPON_LEN] = {"greatsword", "lance", "rapier", "spear"};
 
-    for (int i = 0; i < (WEAPON_LIST); i++)
+    for (int i = 0; i < WEAPON_LEN; i++)
     {
         registerWeapon(&weapons, weaponList[i], 100, 50);
     }
@@ -23,7 +28,7 @@ int main()
     std::cout << "Welcome, " << player.name << "." << std::endl;
     std::cout << "Please choose one of the weapons below: " << std::endl;
 
-    for (int i = 0; i < (WEAPON_LIST); i++)
+    for (int i = 0; i < WEAPON_LEN; i++)
     {
         std::cout << i << ". " << weaponList[i] << std::endl;
     }
@@ -39,10 +44,8 @@ void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probabil
     weapons->push_back(wpn);
 }
 
-void registerNames(std::vector<std::string>* names)
+void registerName(std::vector<std::string>* names, std::string name)
 {
-    names->push_back("Sir Lancelot");
-    names->push_back("Sir Kaladin");
-    names->push_back("Sir Geralt");
-    names->push_back("Sir Jamie");
+    std::string fullName = "Sir " + name;
+    names->push_back(fullName);
 }
