@@ -7,7 +7,7 @@ Weapon::Weapon(std::string t, int p, int s)
 
 }
 
-int Weapon::what_is_stamina_cost()
+int Weapon::getStamina()
 {
     return stamina;
 }

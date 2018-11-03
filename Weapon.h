@@ -8,7 +8,7 @@ class Weapon
     public:
         Weapon(std::string t, int p, int s);
         void display();
-        int what_is_stamina_cost();
+        int getStamina();
         bool did_I_hit();
     private:
         std::string type;
