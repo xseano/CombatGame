@@ -84,12 +84,28 @@ void playGame(Knight* knight, Knight* cknight)
     {
         if ((player.getHealth() <= 0) || (player.getStamina() <= 0))
         {
-            // player died
+            if (player.getHealth() <= 0)
+            {
+                std::cout << "You have died, therefore losing the match!" << std::endl;
+            }
+            else if (player.getStamina() <= 0)
+            {
+                std::cout << "You have become exhausted, therefore losing the match!" << std::endl;
+            }
+
             break;
         }
         else if ((cplayer.getHealth() <= 0) || (cplayer.getStamina() <= 0))
         {
-            // computer died
+            if (cplayer.getHealth() <= 0)
+            {
+                std::cout << "The computer has died, therefore losing the match!" << std::endl;
+            }
+            else if (cplayer.getStamina() <= 0)
+            {
+                std::cout << "The computer has become exhausted, therefore losing the match!" << std::endl;
+            }
+
             break;
         }
         else
@@ -110,7 +126,11 @@ void playGame(Knight* knight, Knight* cknight)
                 cplayer.deductHealth(dmg);
                 player.deductStamina(stam);
 
-                std::cout << "You hit the computer with " << dmg << " damage, leaving it with " << cplayer.getHealth() << " health points." << std::endl;
+                std::cout << "You successfully hit the computer with " << dmg << " damage, leaving it with " << cplayer.getHealth() << " health points." << std::endl;
+            }
+            else
+            {
+                std::cout << "You failed to land a hit on the computer!" << std::endl;
             }
 
             if (cweapon.didHit() == true)
@@ -121,10 +141,30 @@ void playGame(Knight* knight, Knight* cknight)
                 player.deductHealth(dmg);
                 cplayer.deductStamina(stam);
 
-                std::cout << "The computer hit you with " << dmg << " damage, leaving you with " << player.getHealth() << " health points." << std::endl;
+                std::cout << "The computer successfully hit you with " << dmg << " damage, leaving you with " << player.getHealth() << " health points." << std::endl;
+            }
+            else
+            {
+                std::cout << "The computer failed to land a hit on you!" << std::endl;
             }
         }
     }
+    
+    std::cout << "========== RESULTS ============" << std::endl;
+
+    std::cout << "Player: " << player.getName() << std::endl;
+    std::cout << player.getName() << "'s Health: " << player.getHealth() << std::endl;
+    std::cout << player.getName() << "'s Stamina: " << player.getStamina() << std::endl;
+    std::cout << player.getName() << "'s Weapon: " << weapon.getType() << std::endl;
+    
+    std::cout << std::endl;
+
+    std::cout << "Computer: " << cplayer.getName() << std::endl;
+    std::cout << cplayer.getName() << "'s Health: " << cplayer.getHealth() << std::endl;
+    std::cout << cplayer.getName() << "'s Stamina: " << cplayer.getStamina() << std::endl;
+    std::cout << cplayer.getName() << "'s Weapon: " << cweapon.getType() << std::endl;
+
+    std::cout << "=============================" << std::endl;
 }
 
 void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probability, int stamina, int damage)
