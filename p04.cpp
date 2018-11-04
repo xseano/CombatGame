@@ -28,11 +28,10 @@ int main()
 
     // Initialize Name Generator
     Name nameGen(names);
-    // Get random name
-    std::string name = nameGen.get();
 
-    // Initialize player with respective health and stamina
-    Player player(name, 200, 100);
+    // Initialize player/computer with respective health and stamina and a randomized name
+    Player player(nameGen.get(), 200, 100);
+    Player computer(nameGen.get(), 200, 100);
 
     std::cout << "Welcome, " << player.name << "." << std::endl;
     std::cout << "Please choose one of the weapons below: " << std::endl;
@@ -44,33 +43,50 @@ int main()
 
     std::cin >> weaponChoice;
     Weapon chosenWeapon = weapons[weaponChoice];
+    Weapon randomWeapon = weapons[getRandomAmount(WEAPON_LEN)];
 
+    // Initialize player/computer knight
     Knight knight(player, chosenWeapon);
+    Knight cknight(computer, randomWeapon);
 
-    // Get weapon stamina value and add it to existenital player base stamina
+    // Get weapon stamina value and add it to existenital player/computer base stamina
     player.addStamina(chosenWeapon.getStamina());
+    computer.addStamina(randomWeapon.getStamina());
 
     while(true)
     {
         if ((player.getHealth() <= 0) || (player.getStamina() <= 0))
         {
+            // player died
+            break;
+            return 0;
+        }
+        else if ((computer.getHealth() <= 0) || (computer.getStamina() <= 0))
+        {
+            // computer died
             break;
             return 0;
         }
         else
         {
-            playGame(&knight);
+            playGame(&knight, &cknight);
         }
     }
 }
 
-void playGame(Knight* knight)
+void playGame(Knight* knight, Knight* cknight)
 {
     Player player = knight->getPlayer();
     Weapon weapon = knight->getWeapon();
 
+    Player cplayer = cknight->getPlayer();
+    Weapon cweapon = cknight->getWeapon();
+
     std::cout << "player: " << player.getName() << std::endl;
     std::cout << "weapon: " << weapon.getType() << std::endl;
+
+    std::cout << "computer: " << cplayer.getName() << std::endl;
+    std::cout << "comp weapon: " << cweapon.getType() << std::endl;
 }
 
 void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probability, int stamina)

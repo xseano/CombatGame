@@ -14,7 +14,7 @@
 
 void registerName(std::vector<std::string>* names, std::string name);
 void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probability, int stamina);
-void playGame(Knight* knight);
+void playGame(Knight* knight, Knight* cknight);
 
 int getRandomAmount(int max);
 
