@@ -41,8 +41,14 @@ int main()
         std::cout << i << ". " << weaponList[i] << std::endl;
     }
 
+    // ask user for which weapon they prefer
     std::cin >> weaponChoice;
+
     Weapon chosenWeapon = weapons[weaponChoice];
+    
+    // remove weapon from vector so computer/player cannot have the same weapons
+    weapons.erase(std::remove(weapons.begin(), weapons.end(), chosenWeapon), weapons.end());
+
     Weapon randomWeapon = weapons[getRandomAmount(WEAPON_LEN)];
 
     // Initialize player/computer knight

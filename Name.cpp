@@ -9,10 +9,9 @@ Name::Name(std::vector<std::string> ns)
 std::string Name::get()
 {
     Random r(0, 3);
-    int ran = r.get();
 
-    std::cout << "Got #" << ran << std::endl;
-
-    std::string chosenName = names[ran];
+    std::string chosenName = names[r.get()];
+    names.erase(std::remove(names.begin(), names.end(), chosenName), names.end());
+    
     return chosenName;
 }

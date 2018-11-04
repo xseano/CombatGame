@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "Name.h"
 #include "Player.h"
