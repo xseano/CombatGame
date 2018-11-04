@@ -14,7 +14,7 @@
 #include "Knight.h"
 
 void registerName(std::vector<std::string>* names, std::string name);
-void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probability, int stamina);
+void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probability, int stamina, int damage);
 void playGame(Knight* knight, Knight* cknight);
 
 int getRandomAmount(int max);

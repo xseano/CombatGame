@@ -22,8 +22,9 @@ int main()
         // get random values for both weapon hit-probability and stamina
         int probability = getRandomAmount(100);
         int stamina = getRandomAmount(150);
+        int damage = getRandomAmount(50);
 
-        registerWeapon(&weapons, weaponList[i], probability, stamina);
+        registerWeapon(&weapons, weaponList[i], probability, stamina, damage);
     }
 
     // Initialize Name Generator
@@ -45,9 +46,12 @@ int main()
     std::cin >> weaponChoice;
 
     Weapon chosenWeapon = weapons[weaponChoice];
-    
-    // remove weapon from vector so computer/player cannot have the same weapons
-    weapons.erase(std::remove(weapons.begin(), weapons.end(), chosenWeapon), weapons.end());
+
+    /*   // GOAL: remove weapon from vector so computer/player cannot have the same weapons
+        // this method doesn't work atm
+        // destruction of any instance of Weapon in the vector is prohibited, not sure why
+        // weapons.erase(std::remove(weapons.begin(), weapons.end(), chosenWeapon), weapons.end());
+    */
 
     Weapon randomWeapon = weapons[getRandomAmount(WEAPON_LEN)];
 
@@ -59,46 +63,74 @@ int main()
     player.addStamina(chosenWeapon.getStamina());
     computer.addStamina(randomWeapon.getStamina());
 
-    while(true)
-    {
-        if ((player.getHealth() <= 0) || (player.getStamina() <= 0))
-        {
-            // player died
-            break;
-            return 0;
-        }
-        else if ((computer.getHealth() <= 0) || (computer.getStamina() <= 0))
-        {
-            // computer died
-            break;
-            return 0;
-        }
-        else
-        {
-            playGame(&knight, &cknight);
-        }
-    }
+    playGame(&knight, &cknight);
+
+    return 0;
 }
 
 void playGame(Knight* knight, Knight* cknight)
 {
+
     Player player = knight->getPlayer();
     Weapon weapon = knight->getWeapon();
 
     Player cplayer = cknight->getPlayer();
     Weapon cweapon = cknight->getWeapon();
 
-    std::cout << "player: " << player.getName() << std::endl;
-    std::cout << "weapon: " << weapon.getType() << std::endl;
+    weapon.display();
+    cweapon.display();
 
-    std::cout << "computer: " << cplayer.getName() << std::endl;
-    std::cout << "comp weapon: " << cweapon.getType() << std::endl;
+    while(true)
+    {
+        if ((player.getHealth() <= 0) || (player.getStamina() <= 0))
+        {
+            // player died
+            break;
+        }
+        else if ((cplayer.getHealth() <= 0) || (cplayer.getStamina() <= 0))
+        {
+            // computer died
+            break;
+        }
+        else
+        {
+            /*
+            std::cout << "player: " << player.getName() << std::endl;
+            std::cout << "weapon: " << weapon.getType() << std::endl;
+
+            std::cout << "computer: " << cplayer.getName() << std::endl;
+            std::cout << "comp weapon: " << cweapon.getType() << std::endl;
+            */
+
+            if (weapon.didHit() == true)
+            {
+                int dmg = weapon.getDamage();
+                int stam = (weapon.getStamina() / 4);
+
+                cplayer.deductHealth(dmg);
+                player.deductStamina(stam);
+
+                std::cout << "You hit the computer with " << dmg << " damage, leaving it with " << cplayer.getHealth() << " health points." << std::endl;
+            }
+
+            if (cweapon.didHit() == true)
+            {
+                int dmg = cweapon.getDamage();
+                int stam = (cweapon.getStamina() / 4);
+
+                player.deductHealth(dmg);
+                cplayer.deductStamina(stam);
+
+                std::cout << "The computer hit you with " << dmg << " damage, leaving you with " << player.getHealth() << " health points." << std::endl;
+            }
+        }
+    }
 }
 
-void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probability, int stamina)
+void registerWeapon(std::vector<Weapon>* weapons, std::string type, int probability, int stamina, int damage)
 {
     // Add weapon to weapons vector
-    Weapon wpn(type, probability, stamina);
+    Weapon wpn(type, probability, stamina, damage);
     weapons->push_back(wpn);
 }
 
