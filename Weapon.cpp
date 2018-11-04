@@ -25,9 +25,8 @@ int Weapon::getStamina()
 bool Weapon::didHit()
 {
     Random r(1, 100);
-    int ran = r.get();
 
-    if (ran > probability)
+    if (r.get() > probability)
     {
         return false;
     }
@@ -39,5 +38,5 @@ bool Weapon::didHit()
 
 void Weapon::display()
 {
-    std::cout << type << " that costs " << stamina << " stamina and has a " << probability << "% chance to hit." << std::endl;
+    std::cout << "The weapon: " << type << " costs " << stamina << " stamina and has a " << probability << "% chance to hit." << std::endl;
 }

@@ -8,7 +8,6 @@ Knight::Knight(Player player, Weapon weapon)
 
 void Knight::display()
 {
-    // tbw
     std::cout << weapon.getStamina() << std::endl;
 }
 

@@ -31,8 +31,8 @@ int main()
     Name nameGen(names);
 
     // Initialize player/computer with respective health and stamina and a randomized name
-    Player player(nameGen.get(), 200, 100);
-    Player computer(nameGen.get(), 200, 100);
+    Player player(nameGen.get(), 250, 300);
+    Player computer(nameGen.get(), 250, 300);
 
     std::cout << "Welcome, " << player.name << "." << std::endl;
     std::cout << "Please choose one of the weapons below: " << std::endl;
@@ -110,14 +110,6 @@ void playGame(Knight* knight, Knight* cknight)
         }
         else
         {
-            /*
-            std::cout << "player: " << player.getName() << std::endl;
-            std::cout << "weapon: " << weapon.getType() << std::endl;
-
-            std::cout << "computer: " << cplayer.getName() << std::endl;
-            std::cout << "comp weapon: " << cweapon.getType() << std::endl;
-            */
-
             if (weapon.didHit() == true)
             {
                 int dmg = weapon.getDamage();
@@ -156,7 +148,7 @@ void playGame(Knight* knight, Knight* cknight)
     std::cout << player.getName() << "'s Health: " << player.getHealth() << std::endl;
     std::cout << player.getName() << "'s Stamina: " << player.getStamina() << std::endl;
     std::cout << player.getName() << "'s Weapon: " << weapon.getType() << std::endl;
-    
+
     std::cout << std::endl;
 
     std::cout << "Computer: " << cplayer.getName() << std::endl;
