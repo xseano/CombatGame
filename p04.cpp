@@ -46,12 +46,10 @@ int main()
     std::cin >> weaponChoice;
 
     Weapon chosenWeapon = weapons[weaponChoice];
-
-    /*   // GOAL: remove weapon from vector so computer/player cannot have the same weapons
-        // this method doesn't work atm
-        // destruction of any instance of Weapon in the vector is prohibited, not sure why
-        // weapons.erase(std::remove(weapons.begin(), weapons.end(), chosenWeapon), weapons.end());
-    */
+   
+    // Erase the chosen weapon from the vector
+    // where weaponChoice is the int representing the position of the user's chosen weapon
+    weapons.erase(weapons.begin() + weaponChoice);
 
     Weapon randomWeapon = weapons[getRandomAmount(WEAPON_LEN)];
 
